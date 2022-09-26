@@ -1,0 +1,54 @@
+package ch.zli.m223.service;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
+
+import ch.zli.m223.model.Mitglied;
+
+
+import java.util.Arrays;
+import java.util.HashSet;
+
+import javax.enterprise.context.ApplicationScoped;
+
+import org.eclipse.microprofile.jwt.Claims;
+
+import io.smallrye.jwt.build.Jwt;
+
+
+@ApplicationScoped
+public class AuthService {
+
+    @Inject
+    private EntityManager entityManager;
+
+
+
+    @Transactional
+    public String login( Mitglied Mitglied) {
+        var entity = entityManager.find(Mitglied.class, Mitglied.getId());
+        System.out.println("entitry "  + entity.getEmail());
+        if(entity.getPasswort().equals(Mitglied.getPasswort())  &&  entity.getEmail().equals(Mitglied.getEmail()) ){
+            
+                return returnToken(Mitglied.getEmail(), Mitglied.getPasswort(), Mitglied.getRolle());
+            
+        }else{
+            return "Access denied ";
+        }
+
+
+    }
+
+    public String returnToken(String email, String password, String role) {
+        String token = Jwt.issuer("https://example.com/issuer")
+            .upn(email)
+            .groups(new HashSet<>(Arrays.asList(role)))
+            .sign();
+        System.out.println(token);
+        return token;
+      }
+    
+    
+}
