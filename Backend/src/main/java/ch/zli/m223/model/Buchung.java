@@ -14,19 +14,26 @@ import javax.persistence.Table;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 @Entity
-@Table(name = "CAFEUSER")
-public class CafeUser {
+@Table(name = "BUCHUNG")
+public class Buchung {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Schema(readOnly = true)§
+    @Schema(readOnly = true)
     private Long id;
 
     @Column(nullable = false)
-    private LocalDateTime Timestamp;
+    private LocalDateTime Datum;
+
+    @Column(nullable = false)
+    private boolean Status;
+
+    @Column(nullable = false)
+    private Boolean Halbtag;
 
     @ManyToOne
-    @JoinColumn(name = "mitglied_id", nullable = false)
+    @JoinColumn(name="mitglied_id", nullable=false)
     private Mitglied mitglied;
+
 
     public Long getId() {
         return id;
@@ -36,12 +43,20 @@ public class CafeUser {
         this.id = id;
     }
 
-    public LocalDateTime getTimestamp() {
-        return Timestamp;
+    public LocalDateTime getDatum() {
+        return Datum;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
-        Timestamp = timestamp;
+    public void setDatum(LocalDateTime datum) {
+        Datum = datum;
+    }
+
+    public Boolean getHalbtag() {
+        return Halbtag;
+    }
+
+    public void setHalbtag(Boolean halbtag) {
+        Halbtag = halbtag;
     }
 
 }

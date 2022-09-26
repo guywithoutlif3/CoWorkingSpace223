@@ -46,3 +46,23 @@ Or, if you don't have GraalVM installed, you can run the native executable build
 You can then execute your native executable with: `./target/backend-1.0.0-SNAPSHOT-runner`
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
+
+## Creating a native executable
+
+### Datenbankadministration
+
+Über http://localhost:5050 ist PgAdmin4 erreichbar. Damit lässt sich die Datenbank komfortabel verwalten. Der Benutzername lautet `zli@example.com` und das Passwort `zli*123`. Die Verbindung zur PostgreSQL-Datenbank muss zuerst mit folgenden Daten konfiguriert werden:
+ - Host name/address: `db`
+ - Port: `5432`
+ - Maintenance database: `postgres`
+ - Username: `postgres`
+ - Password: `postgres`
+
+## Automatische Tests
+
+Die automatischen Tests können mit `./mvnw quarkus:test` ausgeführt werden. Für die automatischen Tests wird nicht die PostgreSQL-Datenbank verwendet, sondern eine H2-Datenbank, welche sich im Arbeitsspeicher während der Ausführung befindet.
+
+
+## Testdaten
+
+Die Testdaten befinden sich in `src/main/resources/import.sql` und werden bei erstem Start des projekt geladen
