@@ -34,7 +34,6 @@ public class Buchung {
     @JoinColumn(name="mitglied_id", nullable=false)
     private Mitglied mitglied;
 
-
     public Long getId() {
         return id;
     }
@@ -51,6 +50,14 @@ public class Buchung {
         Datum = datum;
     }
 
+    public boolean isStatus() {
+        return Status;
+    }
+
+    public void setStatus(boolean status) {
+        Status = status;
+    }
+
     public Boolean getHalbtag() {
         return Halbtag;
     }
@@ -58,5 +65,16 @@ public class Buchung {
     public void setHalbtag(Boolean halbtag) {
         Halbtag = halbtag;
     }
+
+    public Mitglied getMitglied() {
+        return mitglied;
+    }
+
+    public void setMitglied(Mitglied mitglied) {
+        this.mitglied = mitglied;
+    }
+
+
+  
 
 }
