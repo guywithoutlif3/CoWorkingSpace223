@@ -2,6 +2,7 @@ package ch.zli.m223.controller;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.persistence.CascadeType;
 import javax.ws.rs.BadRequestException;
@@ -14,6 +15,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 
+import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
@@ -29,9 +31,16 @@ public class BuchungController {
     @Inject
     BuchungService buchungService;
 
+
+    
+    @Inject
+    JsonWebToken jwt; 
+    
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Index all buchungen.", description = "Returns a list of all buchungen.")
+    @RolesAllowed("Admin")
+
     public List<Buchung> index() {
         return buchungService.findAll();
 
@@ -40,7 +49,7 @@ public class BuchungController {
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    @Operation(summary = "Index all buchungen.", description = "Returns a list of all buchungen.")
+    @Operation(summary = "Index all buchungen.", description = "Returns a list of all buchungen by ID.")
     public Buchung findById(@PathParam("id") Long id) {
         return buchungService.findById(id);
 
@@ -49,6 +58,7 @@ public class BuchungController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"Admin","Mitglied"})
     @Operation(summary = "Creates a new buchung.", description = "Creates a new buchung and returns the newly added buchung.")
     public Buchung create(Buchung buchung) {
         
@@ -65,6 +75,8 @@ public class BuchungController {
     @Path("/{id}")
     @PUT
     @Operation(summary = "Updates an Buchung.", description = "Updates an Buchung by its id.")
+    @RolesAllowed("Admin")
+
     public Buchung update(@PathParam("id") Long id, Buchung buchung) {
         return buchungService.updateBuchung(id, buchung);
     }

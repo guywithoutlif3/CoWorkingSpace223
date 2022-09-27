@@ -1,7 +1,10 @@
 package ch.zli.m223.controller;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import javax.persistence.CascadeType;
 import javax.ws.rs.BadRequestException;
@@ -22,6 +25,8 @@ import ch.zli.m223.model.Buchung;
 import ch.zli.m223.model.Mitglied;
 import ch.zli.m223.service.AuthService;
 import ch.zli.m223.service.BuchungService;
+import io.smallrye.jwt.build.JwtSignatureException;
+
 import javax.ws.rs.PathParam;
 import javax.ws.rs.PUT;
 
@@ -39,7 +44,8 @@ public class AuthController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/login")
     @Operation(summary = "Creates a new buchung.", description = "Creates a new buchung and returns the newly added buchung.")
-    public String login(Mitglied Mitglied) {
+    @PermitAll
+    public String login(Mitglied Mitglied)  {
         
         return authService.login(Mitglied);
     }

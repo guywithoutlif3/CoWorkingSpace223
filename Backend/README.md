@@ -1,17 +1,18 @@
 # backend Project
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Dieses Projekt ist das Backend für eineen Co-Working Space
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+## Projekt aufsetzten
 
-## Running the application in dev mode
-
-You can run your application in dev mode that enables live coding using:
-```shell script
-./mvnw compile quarkus:dev
-```
-
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+1. Erstelle eine Kopie (fork) von diesem Projekt.
+2. Stelle sicher, dass Docker installiert ist und läuft.
+3. Stelle sicher, dass Visual Studio Code und die Erweiterung Remote Container installiert ist.
+4. Klone (clone) das Projekt lokal, um damit arbeiten zu können.
+5. Öffne das Projekt mit Visual Studio Code.
+6. Öffne das Projekt im Entwicklungscontainer.
+7. Starte das Projekt mit dem Kommando `Quarkus: Debug current Quarkus Project` oder `mvn quarkus:dev ` 
+8. Probiere die Client-Applikation unter http://localhost:8080 aus.
+9. Schaue die API auf http://localhost:8080/q/swagger-ui/ an.
 
 ## Packaging and running the application
 

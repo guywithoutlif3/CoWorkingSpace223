@@ -7,7 +7,7 @@ INSERT INTO public."MITGLIED" (
  INSERT INTO public."MITGLIED" (
 "Email", "Passwort", "Rolle") VALUES (
 'severin.machaz@bluewin.ch'::character varying, 'ENCYRTPED_PWD
-'::character varying, 'ADMIN'::character varying)
+'::character varying, 'Admin'::character varying)
  returning id;
 
 INSERT INTO public."BUCHUNG" (
