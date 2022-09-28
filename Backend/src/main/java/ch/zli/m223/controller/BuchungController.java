@@ -51,7 +51,21 @@ public class BuchungController {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Index all buchungen.", description = "Returns a list of all buchungen by ID.")
     public Buchung findById(@PathParam("id") Long id) {
-        return buchungService.findById(id);
+        if (jwt.getSubject().equals("Mitglied") ) {
+            List<Buchung> listBuchungen = buchungService.findAll();
+            for (int i = 0; i < listBuchungen.size(); i++) {
+                System.out.println(listBuchungen.get(i));
+                if (listBuchungen.get(i).getMitglied().getEmail().equals(jwt.getName())) {
+                    return buchungService.findById(listBuchungen.get(i).getId());
+                }
+            }
+
+        }
+        else if (jwt.getSubject().equals("Admin")) {
+            return buchungService.findById(id);
+        } 
+        return null;
+
 
     }
 
@@ -69,7 +83,20 @@ public class BuchungController {
     @Path("/{id}")
     @Operation(summary = "Deletes an buchung.", description = "Deletes an buchung by its id.")
     public void delete(@PathParam("id") Long id) {
-        buchungService.deleteBuchung(id);
+        if (jwt.getSubject().equals("Mitglied") ) {
+            List<Buchung> listBuchungen = buchungService.findAll();
+            for (int i = 0; i < listBuchungen.size(); i++) {
+                System.out.println(listBuchungen.get(i));
+                if (listBuchungen.get(i).getMitglied().getEmail().equals(jwt.getName())) {
+                    buchungService.deleteBuchung(listBuchungen.get(i).getId());
+                }
+            }
+
+        }
+        else if (jwt.getSubject().equals("Admin")) {
+            buchungService.deleteBuchung(id);
+        } 
+
     }
 
     @Path("/{id}")
@@ -78,7 +105,22 @@ public class BuchungController {
     @RolesAllowed("Admin")
 
     public Buchung update(@PathParam("id") Long id, Buchung buchung) {
-        return buchungService.updateBuchung(id, buchung);
+        if (jwt.getSubject().equals("Mitglied") ) {
+            List<Buchung> listBuchungen = buchungService.findAll();
+            for (int i = 0; i < listBuchungen.size(); i++) {
+                System.out.println(listBuchungen.get(i));
+                if (listBuchungen.get(i).getMitglied().getEmail().equals(jwt.getName())) {
+                    return buchungService.updateBuchung(listBuchungen.get(i).getId(), buchung);
+                }
+            }
+
+        }
+        else if (jwt.getSubject().equals("Admin")) {
+            return buchungService.updateBuchung(id, buchung);
+        } 
+        return null;
+
+
     }
 
 }

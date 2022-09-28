@@ -32,13 +32,12 @@ import javax.ws.rs.PUT;
 @Path("/mitglied")
 @Tag(name = "Entries", description = "Handling of Mitglieden")
 public class MitgliedController {
-   
+
     @Inject
     MitgliedService MitgliedService;
 
     @Inject
-    JsonWebToken jwt; 
-
+    JsonWebToken jwt;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -55,30 +54,29 @@ public class MitgliedController {
     @Operation(summary = "Index all Mitglieden.", description = "Returns a list of all Mitglieden.")
     @PermitAll
     public Mitglied findById(@PathParam("id") Long id) {
-        if(jwt.getSubject()=="Mitglied"){
-            List<Mitglied> listMitglieder =  MitgliedService.findAll();
-
+        if (jwt.getSubject().equals("Mitglied") ) {
+            List<Mitglied> listMitglieder = MitgliedService.findAll();
             for (int i = 0; i < listMitglieder.size(); i++) {
                 System.out.println(listMitglieder.get(i));
-                if(listMitglieder.get(i).getId().equals(id)){
+                if (listMitglieder.get(i).getEmail().equals(jwt.getName())) {
                     return MitgliedService.findById(listMitglieder.get(i).getId());
                 }
             }
-          
-        } if(jwt.getSubject()=="Admin"){   
-               return MitgliedService.findById(id);}
-        return null;
-      
-    }
 
-   
+        }
+        else if (jwt.getSubject().equals("Admin")) {
+            return MitgliedService.findById(id);
+        } 
+        return null;
+
+    }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(summary = "Creates a new Mitglied.", description = "Creates a new Mitglied and returns the newly added Mitglied.")
     public Mitglied create(Mitglied Mitglied) {
-        if(!Mitglied.getEmail().contains("@")){
+        if (!Mitglied.getEmail().contains("@")) {
             throw new BadRequestException("Must contain @");
         }
         return MitgliedService.createMitglied(Mitglied);
@@ -87,18 +85,48 @@ public class MitgliedController {
     @DELETE
     @Path("/{id}")
     @Operation(summary = "Deletes an Mitglied.", description = "Deletes an Mitglied by its id.")
+    @PermitAll
     public void delete(@PathParam("id") Long id) {
-        MitgliedService.deleteMitglied(id);
+        if (jwt.getSubject().equals("Mitglied") ) {
+            List<Mitglied> listMitglieder = MitgliedService.findAll();
+            for (int i = 0; i < listMitglieder.size(); i++) {
+                System.out.println(listMitglieder.get(i));
+                if (listMitglieder.get(i).getEmail().equals(jwt.getName())) {
+                    MitgliedService.deleteMitglied(listMitglieder.get(i).getId());
+                }
+            }
+
+        }
+        else if (jwt.getSubject().equals("Admin")) {
+            MitgliedService.deleteMitglied(id);
+        } 
+        return;
     }
 
     @Path("/{id}")
     @PUT
     @Operation(summary = "Updates an Mitglied.", description = "Updates an Mitglied by its id.")
     public Mitglied update(@PathParam("id") Long id, Mitglied Mitglied) {
-        if(!Mitglied.getEmail().contains("@")){
+       
+
+        if (!Mitglied.getEmail().contains("@")) {
+            if (jwt.getSubject().equals("Mitglied") ) {
+                List<Mitglied> listMitglieder = MitgliedService.findAll();
+                for (int i = 0; i < listMitglieder.size(); i++) {
+                    System.out.println(listMitglieder.get(i));
+                    if (listMitglieder.get(i).getEmail().equals(jwt.getName())) {
+                        return MitgliedService.updateMitglied(listMitglieder.get(i).getId(),Mitglied
+                        );
+                    }
+                }
+    
+            }
+            else if (jwt.getSubject().equals("Admin")) {
+                return MitgliedService.updateMitglied(id,Mitglied);
+            } 
             throw new BadRequestException("Must contain @");
         }
-        return MitgliedService.updateMitglied(id, Mitglied);
+        return null;
     }
 
     public JsonWebToken getJwt() {

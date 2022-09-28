@@ -40,7 +40,7 @@ public class CafeUserController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(summary = "Creates a new CafeUser.", description = "Creates a new CafeUser and returns the newly added CafeUser.")
-    @RolesAllowed("Admin")
+    @RolesAllowed("Mitglied")
     public CafeUser create(CafeUser CafeUser) {
         
         return CafeUserService.createCafeUser(CafeUser);

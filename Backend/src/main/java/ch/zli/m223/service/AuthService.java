@@ -36,7 +36,8 @@ public class AuthService {
         if(entity.getPasswort().equals(Mitglied.getPasswort())  &&  entity.getEmail().equals(Mitglied.getEmail()) ){
                 String rolle = Mitglied.getRolle();
                 String rolle1 = rolle.replace("\n", "");
-                return returnToken(Mitglied.getEmail(), Mitglied.getPasswort(), Mitglied.getRolle());
+                Long id = Mitglied.getId();
+                return returnToken(Mitglied.getEmail(), Mitglied.getPasswort(), rolle1, id);
 
             
         }else{
@@ -46,7 +47,7 @@ public class AuthService {
 
     }
 
-    public String returnToken(String email, String password, String role) {
+    public String returnToken(String email, String password, String role, Long id) {
         String token = Jwt.issuer("https://example.com/issuer")
             .upn(email)
             .subject(role)
