@@ -16,6 +16,7 @@ import javax.enterprise.context.ApplicationScoped;
 
 import org.eclipse.microprofile.jwt.Claims;
 
+import io.quarkus.security.UnauthorizedException;
 import io.smallrye.jwt.algorithm.SignatureAlgorithm;
 import io.smallrye.jwt.build.Jwt;
 import io.smallrye.jwt.build.JwtSignatureException;
@@ -30,18 +31,21 @@ public class AuthService {
 
 
     @Transactional
-    public String login( Mitglied Mitglied) {
-        var entity = entityManager.find(Mitglied.class, Mitglied.getId());
-        System.out.println("entity "  + entity.getEmail());
-        if(entity.getPasswort().equals(Mitglied.getPasswort())  &&  entity.getEmail().equals(Mitglied.getEmail()) ){
-                String rolle = Mitglied.getRolle();
+    public String login( Mitglied mitglied) {
+        var entity = entityManager.find(Mitglied.class, mitglied.getId());
+
+        System.out.println("iD: "+entity.getId());
+        System.out.println(entity.getPasswort() +"' ist das selbe wie '" + mitglied.getPasswort() +"': "+ entity.getPasswort().equals(mitglied.getPasswort()));
+        System.out.println(entity.getEmail().equals(mitglied.getEmail()));
+        if(entity.getPasswort().equals(mitglied.getPasswort())  &&  entity.getEmail().equals(mitglied.getEmail()) ){
+                String rolle = mitglied.getRolle();
                 String rolle1 = rolle.replace("\n", "");
-                Long id = Mitglied.getId();
-                return returnToken(Mitglied.getEmail(), Mitglied.getPasswort(), rolle1, id);
+                Long id = mitglied.getId();
+                return returnToken(mitglied.getEmail(), mitglied.getPasswort(), rolle1, id);
 
             
         }else{
-            return "Access denied ";
+            return "no access";
         }
 
 

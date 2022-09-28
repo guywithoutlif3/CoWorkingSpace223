@@ -43,11 +43,12 @@ public class AuthController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/login")
-    @Operation(summary = "Creates a new buchung.", description = "Creates a new buchung and returns the newly added buchung.")
-    @PermitAll
-    public String login(Mitglied Mitglied)  {
-        
-        return authService.login(Mitglied);
+    @Operation(summary = "responsible for the login.", description = "does the login")
+    public String login(Mitglied mitglied)  {
+        System.out.println("C: "+mitglied.getEmail());
+        System.out.println("C: "+mitglied.getPasswort());
+
+        return authService.login(mitglied);
     }
 
     

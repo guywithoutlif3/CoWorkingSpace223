@@ -2,6 +2,7 @@ package ch.zli.m223.service;
 
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -15,9 +16,10 @@ public class CafeUserService {
     private EntityManager entityManager;
 
     @Transactional
-    public CafeUser createCafeUser(CafeUser CafeUser) {
-        entityManager.persist(CafeUser);
-        return CafeUser;
+    @PermitAll
+    public CafeUser createCafeUser(CafeUser cafeUser) {
+        entityManager.persist(cafeUser);
+        return cafeUser;
     }
     
 }

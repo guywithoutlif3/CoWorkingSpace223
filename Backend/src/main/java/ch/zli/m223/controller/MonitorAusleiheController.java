@@ -39,11 +39,11 @@ public class MonitorAusleiheController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(summary = "Creates a new MonitorAusleihe.", description = "Creates a new MonitorAusleihe and returns the newly added MonitorAusleihe.")
-    @RolesAllowed("Mitglied")
-    public MonitorAusleihe create(MonitorAusleihe MonitorAusleihe) {
+    @RolesAllowed({"Mitglied","Admin"})
+    public MonitorAusleihe create(MonitorAusleihe monitorAusleihe) {
 
         
-        return MonitorAusleiheService.createMonitorAusleihe(MonitorAusleihe);
+        return MonitorAusleiheService.createMonitorAusleihe(monitorAusleihe);
     }
 
     

@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.jboss.resteasy.reactive.DateFormat;
 
 @Entity
 @Table(name = "CAFEUSER")
@@ -21,11 +22,11 @@ public class CafeUser {
     @Schema(readOnly = true)
     private Long id;
 
-    @Column(nullable = false)
-    private LocalDateTime Timestamp;
+    @Column(nullable = true)
+    private LocalDateTime timestamp;
 
     @ManyToOne
-    @JoinColumn(name = "mitglied_id", nullable = false)
+    @JoinColumn(name = "mitglied_id", nullable = true)
     private Mitglied mitglied;
 
     public Long getId() {
@@ -37,11 +38,21 @@ public class CafeUser {
     }
 
     public LocalDateTime getTimestamp() {
-        return Timestamp;
+        return timestamp;
     }
 
     public void setTimestamp(LocalDateTime timestamp) {
-        Timestamp = timestamp;
+        this.timestamp = timestamp;
     }
+
+    public Mitglied getMitglied() {
+        return mitglied;
+    }
+
+    public void setMitglied(Mitglied mitglied) {
+        this.mitglied = mitglied;
+    }
+
+    
 
 }

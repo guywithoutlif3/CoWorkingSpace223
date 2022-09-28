@@ -31,7 +31,7 @@ public class MonitorAusleihe {
 
     @ManyToOne
     @JoinColumn(name="monitor_id", nullable=false)
-    private Monitor Monitor;
+    private Monitor monitor;
     
     public Long getId() {
         return id;
@@ -47,6 +47,22 @@ public class MonitorAusleihe {
 
     public void setDatum(LocalDateTime datum) {
         Datum = datum;
+    }
+
+    public Mitglied getMitglied() {
+        return mitglied;
+    }
+
+    public void setMitglied(Mitglied mitglied) {
+        this.mitglied = mitglied;
+    }
+
+    public Monitor getMonitor() {
+        return monitor;
+    }
+
+    public void setMonitor(Monitor monitor) {
+        this.monitor = monitor;
     }
 
 

@@ -6,8 +6,7 @@ INSERT INTO public."MITGLIED" (
 
  INSERT INTO public."MITGLIED" (
 "Email", "Passwort", "Rolle") VALUES (
-'severin.machaz@bluewin.ch'::character varying, 'ENCYRTPED_PWD
-'::character varying, 'Admin'::character varying)
+'severin.machaz@bluewin.ch'::character varying, 'ENCYRTPED_PWD'::character varying, 'Admin'::character varying)
  returning id;
 
 INSERT INTO public."BUCHUNG" (
@@ -15,23 +14,23 @@ INSERT INTO public."BUCHUNG" (
 'NOW()'::timestamp without time zone, true::boolean, true::boolean, '1'::bigint)
  returning id;
 
- INSERT INTO public."BUCHUNG" (
+INSERT INTO public."BUCHUNG" (
 "Datum", "Halbtag", "Status", mitglied_id) VALUES (
 'NOW()'::timestamp without time zone, false::boolean, false::boolean, '1'::bigint)
  returning id;
 
- INSERT INTO public."CAFEUSER" (
-"Timestamp", mitglied_id) VALUES (
+
+INSERT INTO public."CAFEUSER" (
+"timestamp", mitglied_id) VALUES (
 'NOW()'::timestamp without time zone, '1'::bigint)
  returning id;
 
 INSERT INTO public."MONITOR" (
-id) VALUES (
-'1'::bigint)
+"Name") VALUES (
+'Monitor1'::character varying)
  returning id;
 
  INSERT INTO public."MONITORAUSLEIHE" (
 "Datum", monitor_id, mitglied_id) VALUES (
-'NOW()
-'::timestamp without time zone, '1'::bigint, '1'::bigint)
+'NOW()'::timestamp without time zone, '1'::bigint, '1'::bigint)
  returning id;

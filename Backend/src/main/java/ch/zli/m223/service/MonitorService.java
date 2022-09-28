@@ -13,7 +13,7 @@ import ch.zli.m223.model.Monitor;
 public class MonitorService {
     @Inject
     private EntityManager entityManager;
-
+    
     @Transactional
     public Monitor createMonitor(Monitor Monitor) {
         entityManager.persist(Monitor);

@@ -75,7 +75,7 @@ public class BuchungController {
     @RolesAllowed({"Admin","Mitglied"})
     @Operation(summary = "Creates a new buchung.", description = "Creates a new buchung and returns the newly added buchung.")
     public Buchung create(Buchung buchung) {
-        
+        System.out.println(buchung.getDatum());
         return buchungService.createBuchung(buchung);
     }
 

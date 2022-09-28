@@ -67,3 +67,11 @@ Die automatischen Tests können mit `./mvnw quarkus:test` ausgeführt werden. F�
 ## Testdaten
 
 Die Testdaten befinden sich in `src/main/resources/import.sql` und werden bei erstem Start des projekt geladen
+
+## Pfad des githubs
+
+https://github.com/guywithoutlif3/CoWorkingSpace223
+
+## Kommentar zu umsetzung
+
+mir ist jetzt 16:00 noch der Logik fehler aufgefallen das bei der "registrierung" die Rollle mitgegeben werden muss was wenig sinn ergibt, dies ist mir bewusst aber dieses Modul ist so wie so ein aboluter time crunch also habe ich jetz keine Zeit mehr dies zu lösen und sage als argumentation das dies im Frontend dann gelöst wird (;

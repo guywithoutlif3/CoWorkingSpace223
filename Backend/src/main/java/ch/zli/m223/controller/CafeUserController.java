@@ -32,18 +32,14 @@ public class CafeUserController {
     CafeUserService CafeUserService;
 
 
-
-    @Inject
-    JsonWebToken jwt; 
-
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(summary = "Creates a new CafeUser.", description = "Creates a new CafeUser and returns the newly added CafeUser.")
     @RolesAllowed("Mitglied")
-    public CafeUser create(CafeUser CafeUser) {
-        
-        return CafeUserService.createCafeUser(CafeUser);
+    public CafeUser create(CafeUser cafeUser) {
+        System.out.println(cafeUser.getTimestamp());
+        return CafeUserService.createCafeUser(cafeUser);
     }
 
     
