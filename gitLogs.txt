@@ -1,0 +1,109 @@
+commit 2beafdff518945215dde474d4d81c2c45ff041ac
+Author: guywithoutlif3 <72743368+guywithoutlif3@users.noreply.github.com>
+Date:   Wed Sep 28 15:36:47 2022 +0200
+
+    Alle E2E tests fertig
+    
+    Alle e2e tests fertig und mit status passing durchgetestet
+    
+    Auch noch readme angepasst, fehler gefixxt, import.sql angepasst
+    
+    17 Test fälle
+    
+    + AuthTest
+    +BuchungTest
+    +CafeUserTest
+    +MitgliedTest
+    +MonitorTest
+    +MonitorAusleiheTest
+
+commit 92324377bb316c2811ce26761154cb5807d4d0cd
+Author: guywithoutlif3 <72743368+guywithoutlif3@users.noreply.github.com>
+Date:   Wed Sep 28 09:24:28 2022 +0200
+
+    JWT routes secured, user nur auf eigene {id}
+    
+    JWT routes  secured. das nur authentifizerte user auf routen kann zugreifen und Admin nur Mitglieder auch nur auf Ihre eigenen
+    
+    user nur auf eigene {id}
+
+commit 170ff075efa7551b9ce5108bde6dcf50ab9cf247
+Author: guywithoutlif3 <72743368+guywithoutlif3@users.noreply.github.com>
+Date:   Tue Sep 27 14:38:26 2022 +0200
+
+    WIP: provisorische Annotationen für Authentifizerung + readme changes
+    
+    provisorische Annotationen für Authentifizerung
+    
+    Alle Annotationen hinzugefügt wer was darf und einen potentiellen lösungsantz ausgeschrieben aber alles noch nicht funktionell WIP
+    
+     readme changes
+
+commit b33760616b14548cb5b6ea92c7d62ca8c6e395f6
+Author: guywithoutlif3 <72743368+guywithoutlif3@users.noreply.github.com>
+Date:   Mon Sep 26 16:38:03 2022 +0200
+
+    GenerateToken works correctly with /login
+    
+    GenerateToken works correctly with /login but routes still not protected
+
+commit 2552df784c6b7790cad394b98eac430630ed6159
+Author: guywithoutlif3 <72743368+guywithoutlif3@users.noreply.github.com>
+Date:   Mon Sep 26 14:14:20 2022 +0200
+
+    Alle Models. Services und Controller umgesetzt (noch ohne JWT validation)
+    
+    Alle Models. Services und Controller umgesetzt (noch ohne JWT validation)
+    
+    nach diesem commit habe ich mitt jwt validation angefangen
+
+commit 0520556c82ebff964977ebc280084ccf0c96a1cb
+Author: guywithoutlif3 <72743368+guywithoutlif3@users.noreply.github.com>
+Date:   Mon Sep 26 11:44:28 2022 +0200
+
+    provisorischer Controller + Testdaten, import .sql + readme
+    
+    provisorischer Controller
+    Testdaten, import .sql
+    readme anpassungen für Testdaten, Datenbank usw
+    
+    ( umstrukturierung des Projekt und folders )
+
+commit 3a6256355889d06f4285031be7f9746fd78be1b6
+Author: guywithoutlif3 <72743368+guywithoutlif3@users.noreply.github.com>
+Date:   Sun Sep 25 21:03:10 2022 +0200
+
+    dokumentation richtig commiten
+    
+    DOKU = fertig denke ich
+
+commit 99feeec73f8aabb6157a30cf850edaef9846df0b
+Author: guywithoutlif3 <72743368+guywithoutlif3@users.noreply.github.com>
+Date:   Sun Sep 25 21:01:59 2022 +0200
+
+    re-added container + Aufgabe 7,8
+    
+    7 Entitäten
+    8 Relationen
+    
+    Es läuft aber noch nicht
+    
+    mvn cmd problem mit JAVA_HOME
+
+commit ad5594f45ea7c30d3376d514bdca0e8d84ccda7c
+Author: guywithoutlif3 <72743368+guywithoutlif3@users.noreply.github.com>
+Date:   Sat Sep 24 16:18:30 2022 +0200
+
+    Sequenzdiagramme abgeschlossen
+
+commit 6a227f57a23506fb06f26f37200a58a0e20e1be3
+Author: guywithoutlif3 <72743368+guywithoutlif3@users.noreply.github.com>
+Date:   Sat Sep 24 13:05:21 2022 +0200
+
+    Dokumentation erstellt und angefgangen mit plannung
+
+commit 81fdbacd484a8efadc2571739cac4bef6406dc86
+Author: guywithoutlif3 <72743368+guywithoutlif3@users.noreply.github.com>
+Date:   Wed Sep 21 13:02:02 2022 +0200
+
+    Initial commit
